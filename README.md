@@ -32,6 +32,8 @@ Football coaches often notice that a player is overworked only after she is inju
 - Files: https://zenodo.org/records/10033832
 - Licence: CC BY 4.0 (educational use allowed with attribution)
 
+Cleaned tables in `data/clean/` are derived from SoccerMon (Midoglu et al., 2022), CC BY 4.0.
+
 ## Innovation
 
 Analytics dashboard (Power BI) connected live to the Oracle database. It shows each player's risk status (red, amber or green), load trends and open injuries. Business rules stay in PL/SQL; the dashboard only shows the data. (Oracle APEX is the fallback tool if Power BI cannot connect.)
