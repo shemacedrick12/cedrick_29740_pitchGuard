@@ -26,7 +26,7 @@ Football coaches often notice that a player is overworked only after she is inju
 
 ## Data source
 
-**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 33,849 reports, about 9.3 MB). Players appear only as random anonymized IDs, so no real person can be identified.
+**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 33,849 reports, 706 kB). Players appear only as random anonymized IDs, so no real person can be identified.
 
 - Dataset page: https://datasets.simula.no/soccermon/
 - Files: https://zenodo.org/records/10033832
