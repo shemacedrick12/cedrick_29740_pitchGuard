@@ -10,7 +10,7 @@
 
 ## Problem statement
 
-Football coaches often notice that a player is overworked only after she is injured. Training load, sleep, soreness and fatigue are recorded in separate files or apps, and nothing enforces simple safety rules, such as keeping an injured player out of training. Injuries are common and costly: in elite women's football, about 6.7 injuries occur per 1000 hours played, and an elite team can expect about 35 time-loss injuries a season (UEFA Women's Elite Club Injury Study, 2024).
+Football coaches often notice that a player is overworked only after she is injured. Training load, sleep, soreness and fatigue are recorded in separate files or apps, and nothing enforces simple safety rules, such as keeping an injured player out of training. Injuries are common and costly: in elite women's football, about 6.7 injuries occur per 1000 hours played, and an elite team can expect about 35 time-loss injuries a season (Hallén et al., 2024).
 
 ## Objectives
 
@@ -68,6 +68,6 @@ Analytics dashboard (Power BI) connected live to the Oracle database. It shows e
 - Oracle. (2019). Oracle Database PL/SQL Language Reference, Release 19. https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/overview-triggers.html
 - Rossi, A., Pappalardo, L., Cintia, P., Iaia, F. M., Fernàndez, J., & Medina, D. (2018). Effective injury forecasting in soccer with GPS training data and machine learning. PLOS ONE, 13(7), e0201264. https://doi.org/10.1371/journal.pone.0201264
 - Simula Research Laboratory. (n.d.). SoccerMon dataset [Data set]. https://datasets.simula.no/soccermon/
-- UEFA Women's Elite Club Injury Study. (2024). British Journal of Sports Medicine, 58(3), 128-135. https://doi.org/10.1136/bjsports-2023-107133
+- Hallén, A., Tomás, R., Ekstrand, J., Bengtsson, H., Van den Steen, E., Hägglund, M., & Waldén, M. (2024). UEFA Women's Elite Club Injury Study: a prospective study on 1527 injuries over four consecutive seasons 2018/2019 to 2021/2022 reveals thigh muscle injuries to be most common and ACL injuries most burdensome. British Journal of Sports Medicine, 58(3), 128-135. https://doi.org/10.1136/bjsports-2023-107133
 
 Full list with findings: `docs/research/research_log.md`
