@@ -1,0 +1,33 @@
+illness_id,player_id,report_date,problem
+1,11,2020-09-16,soar throat
+2,13,2020-08-11,nausea
+3,13,2021-01-04,headache
+4,13,2021-01-04,nausea
+5,13,2021-01-04,other
+6,13,2021-10-18,soar throat
+7,13,2021-10-20,headache
+8,13,2021-10-20,fever
+9,13,2021-10-20,soar throat
+10,13,2021-10-20,coughing
+11,13,2021-10-25,headache
+12,13,2021-10-25,coughing
+13,13,2021-12-08,headache
+14,13,2021-12-08,soar throat
+15,13,2021-12-09,headache
+16,13,2021-12-09,soar throat
+17,13,2021-12-09,other
+18,29,2021-09-12,headache
+19,29,2021-09-12,soar throat
+20,29,2021-09-12,coughing
+21,29,2021-09-12,nausea
+22,29,2021-09-13,headache
+23,29,2021-09-13,soar throat
+24,29,2021-09-13,coughing
+25,29,2021-09-13,nausea
+26,29,2021-09-14,headache
+27,29,2021-09-14,coughing
+28,34,2021-10-25,soar throat
+29,34,2021-11-04,soar throat
+30,34,2021-11-09,soar throat
+31,34,2021-11-09,coughing
+32,34,2021-11-10,coughing
