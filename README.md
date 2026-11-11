@@ -1,12 +1,9 @@
 # PitchGuard: Football Player Training-Load and Injury Monitoring System
 
-- **Student:** SHEMA Mfizi Cedrick, ID 29740
-  
-- **Course:** INSY 8311, Database Development with PL/SQL, Adventist University of Central Africa (AUCA)
-  
-- **Instructor:** Eric Maniraguha
-  
-- **Phase:** 0, Research, Data Source and Proposal
+**Student:** SHEMA Mfizi Cedrick, ID 29740
+**Course:** INSY 8311, Database Development with PL/SQL, Adventist University of Central Africa (AUCA)
+**Instructor:** Eric Maniraguha
+**Phase:** 0, Research, Data Source and Proposal
 
 ## Problem statement
 
@@ -17,26 +14,23 @@ Football coaches often notice that a player is overworked only after she is inju
 **Main objective:** Build an Oracle PL/SQL database that records players' training load, wellness and injuries, and warns coaches when a player is at risk.
 
 **Specific objectives**
-
-- Store players, sessions, training loads, wellness reports and injuries in a normalized (3NF) Oracle database loaded with real data.
-- Calculate each player's acute-to-chronic load ratio with a PL/SQL function and flag high-risk players.
-- Enforce safety rules with triggers (for example, block an injured player from a training session).
-- Keep an audit log of every sensitive action, including blocked attempts.
-- Show a live risk dashboard to coaches, connected to the Oracle database.
+1. Store players, sessions, training loads, wellness reports and injuries in a normalized (3NF) Oracle database loaded with real data.
+2. Calculate each player's acute-to-chronic load ratio with a PL/SQL function and flag high-risk players.
+3. Enforce safety rules with triggers (for example, block an injured player from a training session).
+4. Keep an audit log of every sensitive action, including blocked attempts.
+5. Show a live risk dashboard to coaches, connected to the Oracle database.
 
 ## Data source
 
-**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 33,849 reports, 706 kB). Players appear only as random anonymized IDs, so no real person can be identified.
+**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 33,849 reports, about 9.3 MB). Players appear only as random anonymized IDs, so no real person can be identified.
 
 - Dataset page: https://datasets.simula.no/soccermon/
 - Files: https://zenodo.org/records/10033832
 - Licence: CC BY 4.0 (educational use allowed with attribution)
 
-Cleaned tables in `data/clean/` are derived from SoccerMon (Midoglu et al., 2022), CC BY 4.0.
-
 ## Innovation
 
-Analytics dashboard (Power BI) connected live to the Oracle database. It shows each player's risk status (red, amber or green), load trends and open injuries. Business rules stay in PL/SQL; the dashboard only shows the data. (Oracle APEX is the fallback tool if Power BI cannot connect.)
+**Analytics dashboard (Power BI)** connected live to the Oracle database. It shows each player's risk status (red, amber or green), load trends and open injuries. Business rules stay in PL/SQL; the dashboard only shows the data. (Oracle APEX is the fallback tool if Power BI cannot connect.)
 
 ## Planned tables (to be refined in Phase II)
 
@@ -66,10 +60,22 @@ Analytics dashboard (Power BI) connected live to the Oracle database. It shows e
 
 ## References
 
-- Bartels, F., Xing, L., Midoglu, C., Boeker, M., Kirsten, T., & Halvorsen, P. (2024). SoccerGuard: Investigating injury risk factors for professional soccer players with machine learning (arXiv:2411.08901). https://arxiv.org/abs/2411.08901
-- Hallén, A., Tomás, R., Ekstrand, J., Bengtsson, H., Van den Steen, E., Hägglund, M., & Waldén, M. (2024). UEFA Women's Elite Club Injury Study: A prospective study on 1527 injuries over four consecutive seasons 2018/2019 to 2021/2022 reveals thigh muscle injuries to be most common and ACL injuries most burdensome. British Journal of Sports Medicine, 58(3), 128-135. https://doi.org/10.1136/bjsports-2023-107133
-- Midoglu, C., Boeker, M., Kjæreng Winther, A., Pettersen, S. A., Johansen, D., Riegler, M., Halvorsen, P., & Hicks, S. (2022). SoccerMon: A large-scale multivariate soccer athlete health, performance, and position monitoring dataset (Version v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10033832
-- Oracle. (2019). Oracle Database PL/SQL Language Reference, Release 19. https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/overview-triggers.html
-- Rossi, A., Pappalardo, L., Cintia, P., Iaia, F. M., Fernàndez, J., & Medina, D. (2018). Effective injury forecasting in soccer with GPS training data and machine learning. PLOS ONE, 13(7), e0201264. https://doi.org/10.1371/journal.pone.0201264
+- Bartels, F., Xing, L., Midoglu, C., Boeker, M., Kirsten, T., & Halvorsen, P. (2024). *SoccerGuard: Investigating injury risk factors for professional soccer players with machine learning* (arXiv:2411.08901). https://arxiv.org/abs/2411.08901
+- Hallén, A., Tomás, R., Ekstrand, J., Bengtsson, H., Van den Steen, E., Hägglund, M., & Waldén, M. (2024). UEFA Women's Elite Club Injury Study: A prospective study on 1527 injuries over four consecutive seasons 2018/2019 to 2021/2022 reveals thigh muscle injuries to be most common and ACL injuries most burdensome. *British Journal of Sports Medicine, 58*(3), 128-135. https://doi.org/10.1136/bjsports-2023-107133
+- Midoglu, C., Boeker, M., Kjæreng Winther, A., Pettersen, S. A., Johansen, D., Riegler, M., Halvorsen, P., & Hicks, S. (2022). *SoccerMon: A large-scale multivariate soccer athlete health, performance, and position monitoring dataset* (Version v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10033832
+- Oracle. (2019). *Oracle Database PL/SQL Language Reference, Release 19*. https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/overview-triggers.html
+- Rossi, A., Pappalardo, L., Cintia, P., Iaia, F. M., Fernàndez, J., & Medina, D. (2018). Effective injury forecasting in soccer with GPS training data and machine learning. *PLOS ONE, 13*(7), e0201264. https://doi.org/10.1371/journal.pone.0201264
 
-Full list with findings: `docs/research/research_log.md`
+Full list with findings: [docs/research/research_log.md](docs/research/research_log.md)
+
+## Phase I – Business Process Modeling
+
+**Selected business process:** Daily Training Load Recording and Injury-Risk Alert. Players report session effort, wellness and injuries; PitchGuard validates each entry, calculates the acute:chronic load ratio, and alerts the coach with a RED, AMBER or GREEN status so training can be adjusted before an injury happens.
+
+**Modeling tool:** draw.io (diagrams.net), BPMN swimlane diagram
+
+**Published diagram link:** [TO BE ADDED: draw.io link, File → Publish → Link]
+
+**Supporting explanation document:** [business_process_explanation.pdf](docs/business_process/business_process_explanation.pdf)
+
+**Diagram PDF:** [business_process_diagram.pdf](docs/business_process/business_process_diagram.pdf)
