@@ -47,6 +47,8 @@ Players appear only as codes such as `TeamA-d7299614-fa73-4f69-b5e9-f913e3154ff6
 
 ## 5. Data quality report (counts only, nothing has been fixed)
 
+How each field is used or dropped is in `docs/design/normalization.md`, section 6.
+
 | # | Check | Result | Where | Fix in Phase IV |
 |---|---|---|---|---|
 | 1 | Wide layout: one column per player | 50 player columns repeated in each of 15 grid files (731 rows x 50 = 36,550 cells per file) | wellness, training-load grids | Unpivot to one row per player and date |
@@ -63,7 +65,7 @@ Players appear only as codes such as `TeamA-d7299614-fa73-4f69-b5e9-f913e3154ff6
 | 12 | Long decimals | 5,437 of 16,981 sleep durations are not whole hours (for example 7.833333333333333) | sleep_duration.csv | Round to 2 decimals |
 | 13 | Derived values stored | 8 grids hold 292,400 values (8 x 36,550) that can be calculated from session.json; load in session.json equals RPE x minutes in all 16,265 sessions (0 exceptions) | training-load | Do not load grids; calculate with functions |
 | 14 | Rest days stored as 0 | 22,359 zero cells in daily_load.csv (rest days) against 14,191 days with load | daily_load.csv | Not loaded (no session row means rest) |
-| 15 | Misspelled value | "soar throat" appears 10 times in 32 illness entries (should be "sore throat") | illness.csv | Correct to "sore throat" |
+| 15 | Misspelled value | "soar throat" appears 10 times in 32 illness entries (should be "sore throat") | illness.csv | Not needed: illness.csv is not loaded in the 3NF design (it stays in data/raw). Correct to "sore throat" if it is ever loaded |
 | 16 | Mixed line endings | 3 files use CRLF (injury, illness, game-performance), 16 use LF | 19 files | Handle when loading |
 | 17 | Missing fields in sessions | 0 missing; sessions per player range from 8 to 645 | session.json | None |
 | 18 | Orphan player references | 0 players in injury, illness or game files are missing from session.json | all files | None |
