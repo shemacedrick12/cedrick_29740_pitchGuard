@@ -3,7 +3,7 @@
 **Student:** SHEMA Mfizi Cedrick, ID 29740
 **Course:** INSY 8311, Database Development with PL/SQL, Adventist University of Central Africa (AUCA)
 **Instructor:** Eric Maniraguha
-**Phase:** 0 (Research, Data Source and Proposal) and I (Business Process Modeling)
+**Phase:** 0 (Research, Data Source and Proposal), I (Business Process Modeling) and II (Data Sourcing, Normalization and Logical Design)
 
 ## Problem statement
 
@@ -22,7 +22,7 @@ Football coaches often notice that a player is overworked only after she is inju
 
 ## Data source
 
-**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 33,849 reports, about 9.3 MB). Players appear only as random anonymized IDs, so no real person can be identified.
+**SoccerMon** (Midoglu et al., 2022): training load, daily wellness and injury reports from two Norwegian women's elite teams, 2020 and 2021 seasons. I use the subjective part only (50 players, 16,265 training sessions, 17,008 daily wellness reports and 162 injury reports; the download `subjective.zip` is 705.8 kB). Players appear only as random anonymized IDs, so no real person can be identified.
 
 - Dataset page: https://datasets.simula.no/soccermon/
 - Files: https://zenodo.org/records/10033832
@@ -32,16 +32,18 @@ Football coaches often notice that a player is overworked only after she is inju
 
 **Analytics dashboard (Power BI)** connected live to the Oracle database. It shows each player's risk status (red, amber or green), load trends and open injuries. Business rules stay in PL/SQL; the dashboard only shows the data. (Oracle APEX is the fallback tool if Power BI cannot connect.)
 
-## Planned tables (to be refined in Phase II)
+## Tables (3NF design from Phase II)
 
 | Table | Purpose |
 |---|---|
 | TEAM | Teams in the dataset |
-| PLAYER | Anonymized player ID and team |
-| SESSION_LOAD | One player's training session: perceived exertion (RPE), minutes and load (sRPE) |
-| WELLNESS_REPORT | Daily fatigue, sleep, soreness, stress and mood |
-| INJURY | Injury location, severity, start and end date |
-| RISK_ALERT | Alerts raised by the risk function |
+| PLAYER | Anonymized player code and team |
+| SESSION_LOAD | One player's training session: perceived exertion (RPE) and minutes; the session load (sRPE = RPE x minutes) is calculated, not stored |
+| WELLNESS_REPORT | One player's daily fatigue, mood, readiness, sleep, soreness and stress answers |
+| INJURY_REPORT | One player's injury report on one day |
+| BODY_LOCATION | The 11 allowed body locations |
+| INJURY_LOCATION | Junction table: the body locations a report lists, with severity (minor or major) |
+| RISK_ALERT | Alerts raised by the risk function or by a blocked entry |
 | AUDIT_LOG | Who tried what and when, including denied actions |
 
 ## Planned PL/SQL features
@@ -79,3 +81,15 @@ Full list with findings: [docs/research/research_log.md](docs/research/research_
 **Supporting explanation document:** [business_process_explanation.pdf](docs/business_process/business_process_explanation.pdf)
 
 **Diagram PDF:** [business_process_diagram.pdf](docs/business_process/business_process_diagram.pdf)
+
+## Phase II – Data Sourcing, Normalization and Logical Design
+
+**Raw data:** [`data/raw/`](data/raw/) holds the SoccerMon `subjective.zip` exactly as downloaded (MD5 matches Zenodo) and its 19 extracted files, unedited.
+
+**Dataset card:** [`data/dataset_card.md`](data/dataset_card.md): source, licence, format, size, what one record is, and a data quality report with counts (18 checks).
+
+**Normalization:** [`docs/design/normalization.md`](docs/design/normalization.md): UNF to 1NF to 2NF to 3NF for wellness, sessions and injuries with real rows, the dependency removed at every split, a mapping of every raw field to its table and column, and the Phase IV cleaning checklist.
+
+**Logical ERD:** [`docs/design/erd.png`](docs/design/erd.png): 9 tables in crow's foot notation.
+
+**Data dictionary:** [`docs/design/data_dictionary.md`](docs/design/data_dictionary.md): every column with its meaning, required and unique flags, plus relationships and cardinality.
