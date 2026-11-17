@@ -3,7 +3,7 @@
 **Student:** SHEMA Mfizi Cedrick, ID 29740
 **Course:** INSY 8311, Database Development with PL/SQL, Adventist University of Central Africa (AUCA)
 **Instructor:** Eric Maniraguha
-**Phase:** 0 (Research, Data Source and Proposal), I (Business Process Modeling) and II (Data Sourcing, Normalization and Logical Design)
+**Phase:** 0 (Research, Data Source and Proposal), I (Business Process Modeling), II (Data Sourcing, Normalization and Logical Design) and III (Database Creation)
 
 ## Problem statement
 
@@ -93,3 +93,34 @@ Full list with findings: [docs/research/research_log.md](docs/research/research_
 **Logical ERD:** [`docs/design/erd.png`](docs/design/erd.png): 9 tables in crow's foot notation.
 
 **Data dictionary:** [`docs/design/data_dictionary.md`](docs/design/data_dictionary.md): every column with its meaning, required and unique flags, plus relationships and cardinality.
+
+## Phase III – Database (PDB) Creation
+
+The project runs in its own pluggable database on Oracle Database 21c Express Edition (Windows, local machine).
+
+| Item | Value |
+|---|---|
+| PDB | `c_29740_cedrick_pitchguard_db` |
+| Admin user | `cedrick_admin` (roles `DBA` and `PDB_DBA`; password is the first name, lab-only convention) |
+| Data tablespace | `pitchguard_data`, 100 MB, autoextend 10 MB, max 1 GB |
+| Index tablespace | `pitchguard_idx`, 50 MB, autoextend 10 MB, max 500 MB |
+| Temporary tablespace | `pitchguard_temp`, 50 MB, autoextend 10 MB, max 500 MB |
+| Archive log mode | `ARCHIVELOG` (set at CDB level) |
+| EM Express | `https://localhost:5540/em` (port 55 + last two digits of the ID) |
+
+Scripts, run in this order, in `database/setup/`:
+
+1. `01_create_pdb.sql`: creates the PDB, opens it and saves its state so it reopens after a restart.
+2. `02_create_user.sql`: grants the full `DBA` role to the admin user and checks it.
+3. `03_tablespaces.sql`: creates the three tablespaces, makes them the admin user's defaults and gives unlimited quota on data and index.
+4. `04_archive_log.sql`: switches the database to ARCHIVELOG (restart required).
+5. `05_verify.sql`: verification queries.
+
+**Why archive logging is a CDB-level setting.** All PDBs in a container database share one set of online redo logs and archived logs, so ARCHIVELOG cannot be switched on for a single PDB. It needs SYSDBA in `CDB$ROOT` and a restart that affects every PDB. The benefit is point-in-time recovery for all of them.
+
+**Notes from the build.**
+- Oracle XE allows only a limited number of user PDBs. An empty, never-opened PDB left over from earlier practice (`er_to_delete_pdb_2024101`) was dropped to make room.
+- `ROLES = (DBA)` in `CREATE PLUGGABLE DATABASE` gave the admin user only `PDB_DBA`, so `DBA` is granted explicitly in script 02.
+- EM Express shows "UNLIMITED" as the maximum size of every tablespace, including ours; the real limits are in `DBA_DATA_FILES` (screenshot 15).
+
+Evidence is in `screenshots/` (PDB creation, admin connection, roles, tablespaces, archive log before and after, EM Express login and tablespaces page, and the verification queries).
